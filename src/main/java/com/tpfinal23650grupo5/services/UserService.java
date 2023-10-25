@@ -1,6 +1,9 @@
 package com.tpfinal23650grupo5.services;
 
+import com.tpfinal23650grupo5.entities.User;
 import com.tpfinal23650grupo5.entities.dtos.UserDto;
+import com.tpfinal23650grupo5.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,13 +14,23 @@ import java.util.List;
 @Service
 public class UserService {
 
-    public List<String> getUsers() {
+    @Autowired
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository){
+        this.repository= repository;
+    }
+
+    public List<User> getUsers() {
+
+        List<User>listUsers= repository.findAll();
+
         List<String> users = new ArrayList<String>();
         users.add("Jonathan");
         users.add("Cristian");
         users.add("Maximiliano");
 
-        return users;
+        return listUsers;
     }
 
     public String getUserById(Long id) {
