@@ -1,5 +1,6 @@
 package com.tpfinal23650grupo5.controllers;
 
+import com.tpfinal23650grupo5.entities.User;
 import com.tpfinal23650grupo5.entities.dtos.UserDto;
 import com.tpfinal23650grupo5.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,14 @@ public class UserController {
     //REQUEST GET
     //TRAE LA INFO DE TODOS LOS USUARIOS
     @GetMapping(value = "/users")
-    public List<String> getUsers() {
+    public List<User> getUsers() {
         return service.getUsers();
     }
 
 
     //TRAE LA INFO DE UN SOLO USUARIO
     @GetMapping(value = "/users/{id}")
-    public String getUserById(@PathVariable Long id) {
-
+    public User getUserById(@PathVariable Long id) {
         return service.getUserById(id) ;
     }
 
